@@ -1,0 +1,21 @@
+def divide_numbers(a, b):
+    try:
+        result = a / b
+        return f"Result: {result}"
+    except (TypeError, ValueError, ZeroDivisionError) as e:
+        return f"An error occurred: {e}"
+
+# Test cases
+test_cases = [
+    (10, 2),        # ✅ Valid input
+    (10, 0),        # ❌ ZeroDivisionError
+    ("10", 2),      # ❌ TypeError
+    (10, "two")     # ❌ TypeError
+]
+
+# Run test cases
+results = [divide_numbers(a, b) for a, b in test_cases]
+
+# Print results
+for i, result in enumerate(results, 1):
+    print(f"Test case {i}: {result}")
