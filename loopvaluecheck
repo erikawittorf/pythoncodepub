@@ -1,0 +1,5 @@
+dct = {'one': 'two', 'three': 'one', 'two': 'three'}
+v = dct['three']  # v = 'one'
+for k in range(len(dct)):  # loop runs 3 times
+    v = dct[v]
+print(k)
