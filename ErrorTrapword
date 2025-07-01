@@ -1,0 +1,46 @@
+def check_word_in_vocab(word, vocabulary):
+    """
+    Checks if a word exists in the given vocabulary set with proper error handling.
+    
+    Parameters:
+    - word (str): The word to check.
+    - vocabulary (set): A set of valid words.
+    
+    Returns:
+    - bool: True if the word exists in the vocabulary, False otherwise.
+    - str: Error message if input is invalid.
+    """
+    try:
+        if not isinstance(word, str):
+            raise TypeError("Input word must be a string.")
+        
+        word = word.strip()
+        if not word:
+            raise ValueError("Input word is empty after stripping whitespace.")
+        
+        if not isinstance(vocabulary, set):
+            raise TypeError("Vocabulary must be a set of words.")
+        
+        return word.lower() in (w.lower() for w in vocabulary)
+    
+    except Exception as e:
+        return f"Error: {e}"
+
+# Sample vocabulary
+vocab = {"hello", "world", "python", "nlp"}
+
+# Test cases
+test_inputs = [
+    "Python",           # ✅ Valid word
+    "  world  ",        # ✅ Valid with whitespace
+    "",                 # ❌ Empty string
+    123,                # ❌ Non-string input
+    "unknown",          # ❌ Not in vocabulary
+    ("data",),          # ❌ Invalid word type
+]
+
+# Run test cases
+for i, test in enumerate(test_inputs, 1):
+    result = check_word_in_vocab(test, vocab)
+    print(f"Test case {i}: {test!r} -> {result}")
+
